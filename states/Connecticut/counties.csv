@@ -1,1 +1,9 @@
-county,fips,seat,population
+county_name,state_fips,county_fips,population,land_area_sq_mi,centroid,county_seat
+Fairfield County,09,09001,957419,,"[41.206021, -73.367214]",
+Hartford County,09,09003,899498,,"[41.761165, -72.717868]",
+Litchfield County,09,09005,185186,,"[41.726958, -73.190432]",
+Middlesex County,09,09007,164245,,"[41.479018, -72.571631]",
+New Haven County,09,09009,864835,,"[41.396593, -72.942327]",
+New London County,09,09011,268555,,"[41.443271, -72.097543]",
+Tolland County,09,09013,149788,,"[41.842288, -72.372969]",
+Windham County,09,09015,116418,,"[41.80508, -71.993508]",

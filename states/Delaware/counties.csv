@@ -1,1 +1,4 @@
-county,fips,seat,population
+county_name,state_fips,county_fips,population,land_area_sq_mi,centroid,county_seat
+Kent County,10,10001,181851,586.061,"[39.127081, -75.55913]",
+New Castle County,10,10003,570719,426.338,"[39.678852, -75.63529]",
+Sussex County,10,10005,237378,936.14,"[38.661794, -75.331473]",

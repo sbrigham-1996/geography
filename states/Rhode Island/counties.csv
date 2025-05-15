@@ -1,1 +1,6 @@
-county,fips,seat,population
+county_name,state_fips,county_fips,population,land_area_sq_mi,centroid,county_seat
+Bristol County,44,44001,50793,24.132,"[41.712608, -71.284716]",
+Kent County,44,44003,170363,168.568,"[41.698511, -71.488956]",
+Newport County,44,44005,85643,102.431,"[41.548629, -71.266556]",
+Providence County,44,44007,660741,409.484,"[41.857227, -71.449675]",
+Washington County,44,44009,129839,329.279,"[41.467323, -71.590046]",

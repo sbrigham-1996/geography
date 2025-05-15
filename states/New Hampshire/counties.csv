@@ -1,1 +1,11 @@
-county,fips,seat,population
+county_name,state_fips,county_fips,population,land_area_sq_mi,centroid,county_seat
+Belknap County,33,33001,63705,401.85,"[43.518179, -71.439516]",
+Carroll County,33,33003,50107,931.864,"[43.810093, -71.170079]",
+Cheshire County,33,33005,76458,706.709,"[42.897949, -72.260597]",
+Coos County,33,33007,31268,1794.574,"[44.544534, -71.3636]",
+Grafton County,33,33009,91118,1708.599,"[43.83744, -71.957176]",
+Hillsborough County,33,33011,422937,876.537,"[42.879412, -71.531546]",
+Merrimack County,33,33013,153808,932.891,"[43.244048, -71.586768]",
+Rockingham County,33,33015,314176,695.429,"[42.937487, -71.105861]",
+Strafford County,33,33017,130889,367.463,"[43.246137, -70.954351]",
+Sullivan County,33,33019,43063,537.876,"[43.370229, -72.256473]",
