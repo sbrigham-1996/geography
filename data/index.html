@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Mexico Field Camp Map</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <style>
+    #map { height: 600px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Leaflet Library -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <!-- Your NM counties GeoJSON file (must define newMexico variable) -->
+  <script src="./geography/states/New_Mexico/counties.js"></script>
+
+  <!-- Main Map Script -->
+  <script>
+    // Create map
+    const map = L.map('map').setView([34.5, -106], 7);
+
+    // --- Base layer(s)
+    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map); // start visible
+
+    // --- Counties overlay
+    const visited = ['Sandoval', 'Colfax', 'Taos'];
+
+    const countiesLayer = L.geoJSON(newMexico, {
+      style: function (feature) {
+        const isVisited = visited.includes(feature.properties.NAME);
+        return {
+          color: isVisited ? 'green' : 'gray',
+          weight: 1,
+          fillOpacity: isVisited ? 0.3 : 0.1
+        };
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(`${feature.properties.NAME} County`);
+      }
+    });
+
+    // --- Field sites overlay
+    const fieldSites = [
+      { name: "San Ysidro", coords: [35.5520, -106.7753] },
+      { name: "Angel Fire", coords: [36.3936, -105.2842] },
+      { name: "John Dunn Bridge", coords: [36.5672, -105.7061] }
+    ];
+
+    const sitesLayer = L.layerGroup(
+      fieldSites.map(site =>
+        L.marker(site.coords).bindPopup(`<strong>${site.name}</strong>`)
+      )
+    ).addTo(map); // visible by default
+
+    // --- Layer control
+    const baseMaps = {
+      "OpenStreetMap": osm
+    };
+
+    const overlayMaps = {
+      "Counties": countiesLayer,
+      "Field Sites": sitesLayer
+    };
+
+    L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+
+    // Optional: show counties by default
+    countiesLayer.addTo(map);
+
+    // Optional: fit map to counties the first time layer is added
+    let fitOnce = false;
+    map.on('overlayadd', function(e) {
+      if (e.layer === countiesLayer && !fitOnce) {
+        try {
+          map.fitBounds(countiesLayer.getBounds());
+          fitOnce = true;
+        } catch(_) {}
+      }
+    });
+  </script>
+</body>
+</html>
